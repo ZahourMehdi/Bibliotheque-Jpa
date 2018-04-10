@@ -23,7 +23,6 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Cacheable
 public abstract class Compte {
 	
 	/** The id. */

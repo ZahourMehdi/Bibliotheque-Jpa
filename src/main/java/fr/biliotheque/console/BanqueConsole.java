@@ -80,6 +80,10 @@ public class BanqueConsole {
 		em.persist(c);
 		
 		et.commit();
+		em.close();
+		
+		
+		em = entityManagerFactory.createEntityManager();
 		
 		//Réaliser une requête qui recherche tous les comptes d’une personne donnée. Tester cette requête.
 		LOG.info("--Réaliser une requête qui recherche tous les comptes d’une personne donnée--");
@@ -105,6 +109,16 @@ public class BanqueConsole {
 		LOG.info("--Réaliser une requête qui recherche tous les comptes qui ont au moins une opération.--");
 		q = em.createQuery("SELECT c FROM Compte c WHERE c.operation IS NOT EMPTY");
 		q.getResultList().stream().forEach(compt -> LOG.info(((Compte) compt).getNumero()));
+		
+		q = em.createQuery("SELECT c FROM Client c");
+		q.getResultList();
+		
+		//Met en cache les clients
+		Cache cache = entityManagerFactory.getCache();
+		boolean isInCache = cache.contains(Client.class, 1);
+		if (isInCache) {
+			LOG.info("Je suis dedans !");
+		}
 		
 		em.close();
 		entityManagerFactory.close();

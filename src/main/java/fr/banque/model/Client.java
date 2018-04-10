@@ -3,6 +3,7 @@ package fr.banque.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -22,6 +23,7 @@ import javax.persistence.Table;
  * @author Zahour Mehdi
  */
 @Entity
+@Cacheable
 @Table(name="client")
 public class Client {
 
